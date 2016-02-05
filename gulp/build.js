@@ -5,15 +5,19 @@ var gulp = require('gulp');
 var conf = require('./conf');
 
 var $ = require('gulp-load-plugins')({
-    pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+    pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del', 'merge-stream']
 });
+
 
 gulp.task('partials', function ()
 {
-    return gulp.src([
+    var _jade = config.jade();
+    var _html = gulp.src([
             path.join(conf.paths.src, '/app/**/*.html'),
             path.join(conf.paths.tmp, '/serve/app/**/*.html')
         ])
+
+    $.mergeStream(_jade, _html)
         .pipe($.htmlmin({
             collapseWhitespace: true,
             maxLineLength     : 120,

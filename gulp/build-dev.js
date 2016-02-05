@@ -14,9 +14,9 @@ gulp.task('html-dev', ['inject'], function ()
     var injectFiles = gulp.src([
         path.join(conf.paths.src, '/app/core/global-scss/**/*.scss'),
         path.join(conf.paths.src, '/app/core/**/*.scss'),
-        path.join(conf.paths.src, '/app/**/*.scss'),
+        path.join(conf.paths.src, '/app/**/*.{scss,sass}'),
         path.join('!' + conf.paths.src, '/app/core/global-scss/partials/**/*.scss'),
-        path.join('!' + conf.paths.src, '/app/index.scss')
+        path.join('!' + conf.paths.src, '/app/index.sass')
     ], {read: false});
 
     var injectOptions = {
@@ -31,7 +31,7 @@ gulp.task('html-dev', ['inject'], function ()
     };
 
     gulp.src([
-            path.join(conf.paths.src, '/app/index.scss')
+            path.join(conf.paths.src, '/app/index.sass')
         ])
         .pipe($.inject(injectFiles, injectOptions))
         .pipe(gulp.dest(path.join(conf.paths.dist, '/app/')));
@@ -77,7 +77,7 @@ gulp.task('other-dev', function ()
     return gulp.src([
             path.join(conf.paths.src, '/**/*'),
             path.join('!' + conf.paths.src, '/**/*.{css}'),
-            path.join('!' + conf.paths.src, '/app/index.scss')
+            path.join('!' + conf.paths.src, '/app/index.sass')
         ])
         .pipe(fileFilter)
         .pipe(gulp.dest(path.join(conf.paths.dist, '/')));

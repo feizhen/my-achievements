@@ -31,10 +31,10 @@ var buildStyles = function ()
     var injectFiles = gulp.src([
         path.join(conf.paths.src, '/app/core/scss/**/*.scss'),
         path.join(conf.paths.src, '/app/core/**/*.scss'),
-        path.join(conf.paths.src, '/app/**/*.scss'),
+        path.join(conf.paths.src, '/app/**/*.{scss,sass}'),
         path.join('!' + conf.paths.src, '/app/main/components/material-docs/demo-partials/**/*.scss'),
         path.join('!' + conf.paths.src, '/app/core/scss/partials/**/*.scss'),
-        path.join('!' + conf.paths.src, '/app/index.scss')
+        path.join('!' + conf.paths.src, '/app/index.sass')
     ], {read: false});
 
     var injectOptions = {
@@ -49,7 +49,7 @@ var buildStyles = function ()
     };
 
     return gulp.src([
-            path.join(conf.paths.src, '/app/index.scss')
+            path.join(conf.paths.src, '/app/index.sass')
         ])
         .pipe($.inject(injectFiles, injectOptions))
         .pipe(wiredep(_.extend({}, conf.wiredep)))

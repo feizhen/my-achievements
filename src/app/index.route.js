@@ -11,7 +11,14 @@
     {
         $locationProvider.html5Mode(true);
 
-        $urlRouterProvider.otherwise('/sample');
+        // $urlRouterProvider.otherwise('/sample');
+        // using the flowing instead, because the issue: https://github.com/angular-ui/ui-router/issues/600
+        // otherwise, the login guard (@see login.ls) will be in infinite loop
+        $urlRouterProvider.otherwise( function($injector, $location) {
+            var $state = $injector.get("$state");
+            $state.go("app.sample");
+        });
+
 
         /**
          * Layout Style Switcher

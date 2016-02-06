@@ -52,7 +52,8 @@ exports.jade = function()
 {
     return gulp.src([
             path.join(exports.paths.src, '/app/**/*.jade'),
-            path.join(exports.paths.tmp, '/serve/app/**/*.jade')
+            path.join(exports.paths.tmp, '/serve/app/**/*.jade'),
+            '!' + path.join(exports.paths.src, 'app/**/*.partial.jade')
         ])
         .pipe($.jade({pretty: true}))
         .pipe($.size())

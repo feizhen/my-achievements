@@ -25,14 +25,11 @@ angular.module 'app.sample', []
 
     $state-provider.state 'app.sample', {
       url: '/sample'
+      resolve: result: (api-resolver)-> api-resolver.resolve('sample@get')
       views:
         'content@app':
           template-url: 'app/main/sample/sample.html'
-          controller: 'sample-controller as vm'
-      resolve: result: (api-resolver)-> api-resolver.resolve('sample@get')
+          controller: (result, $scope)!->
+            console.log "result: ", result
+            $scope.hello-text = result.data.hello-text
     }
-
-
-  .controller 'sample-controller', (result)->
-    console.log "result: ", result
-    @hello-text = result.data.hello-text

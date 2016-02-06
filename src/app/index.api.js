@@ -177,6 +177,20 @@
 
         api.sample = $resource(api.baseUrl + 'sample/sample.json');
 
+        api.auth = {
+         isRegistedUser: function(params){
+            return $resource(api.baseUrl + 'auth/users.json').get().$promise
+               .then(function(result){
+                  var users = result.data.users
+                  for (var i = users.length - 1 ; i >= 0 ; i--){
+                     if(users[i].email === params.email && users[i].password === params.password ) 
+                        return Promise.resolve({isRegisted: true, user: users[i]}); 
+                  }
+                  return Promise.resolve({isRegisted: false});
+               });
+         }
+        }
+
         api.quickPanel = {
             activities: $resource(api.baseUrl + 'quick-panel/activities.json'),
             contacts  : $resource(api.baseUrl + 'quick-panel/contacts.json'),

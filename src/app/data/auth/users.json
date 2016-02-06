@@ -1,0 +1,24 @@
+{
+  "data": {
+    "users": [
+      {
+        "email": "zhangsan@test.com",
+        "name": "张三",
+        "roles": ["user"],
+        "password": "12345678"
+      },
+      {
+        "email": "lisi@test.com",
+        "name": "李四",
+        "roles": ["user"],
+        "password": "12345678"
+      },
+      {
+        "email": "zhaowu@test.com",
+        "name": "赵武",
+        "roles": ["user", "admin"],
+        "password": "12345678"
+      }
+    ]
+  }
+}

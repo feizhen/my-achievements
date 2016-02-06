@@ -113,7 +113,7 @@
          */
         function logout()
         {
-            // Do logout here..
+            $rootScope.$emit('$logout');// Do logout here..
         }
 
         /**

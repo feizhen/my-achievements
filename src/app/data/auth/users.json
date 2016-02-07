@@ -2,20 +2,26 @@
   "data": {
     "users": [
       {
-        "email": "zhangsan@test.com",
-        "name": "张三",
+        "email": "zhangshan@test.com",
+        "username": "zhangshan",
+        "fullname": "张珊",
+        "avatar": "assets/images/avatars/alice.jpg",
         "roles": ["user"],
         "password": "12345678"
       },
       {
         "email": "lisi@test.com",
-        "name": "李四",
+        "username": "lisi",
+        "fullname": "李思",
+        "avatar": "assets/images/avatars/katherine.jpg",
         "roles": ["user"],
         "password": "12345678"
       },
       {
         "email": "zhaowu@test.com",
-        "name": "赵武",
+        "username": "zhaowu",
+        "fullname": "赵武",
+        "avatar": "assets/images/avatars/andrew.jpg",
         "roles": ["user", "admin"],
         "password": "12345678"
       }

@@ -11,7 +11,9 @@
     {
         var vm = this;
 
+
         // Data
+        vm.currentUser = $rootScope.currentUser;
         $rootScope.global = {
             search: ''
         };
@@ -68,6 +70,7 @@
         // Methods
         vm.toggleSidenav = toggleSidenav;
         vm.logout = logout;
+        vm.lock = lock;
         vm.changeLanguage = changeLanguage;
         vm.setUserStatus = setUserStatus;
         vm.toggleHorizontalMobileMenu = toggleHorizontalMobileMenu;
@@ -114,6 +117,14 @@
         function logout()
         {
             $rootScope.$emit('$logout');// Do logout here..
+        }
+
+        /**
+         * Lock Function
+         */
+        function lock()
+        {
+            $rootScope.$emit('$lock');// Do logout here..
         }
 
         /**

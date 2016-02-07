@@ -23,6 +23,8 @@
             // Sample
             'app.sample',
 
-            'app.auth.login'
+            'app.auth.login',
+            
+            'app.auth.lock'
         ]);
 })();

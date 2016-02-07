@@ -25,11 +25,11 @@ angular.module 'app.auth.login', []
               @invalid-user = true
   }
 
-.factory 'authService',  (api)-> 
+.factory 'authService',  (api, $root-scope)-> 
   service = 
     current-user: null
     auth: ({email, password})-> api.auth.is-registed-user {email, password} .then (result)->
-      service.current-user = result.user if result.is-registed
+      service.current-user = $root-scope.current-user = result.user if result.is-registed
       result
 
 .run ($root-scope, $state, authService)!->
@@ -40,5 +40,5 @@ angular.module 'app.auth.login', []
     $state.go 'app.login'
 
   $root-scope.$on '$logout', (event)!->
-    authService.current-user = null
+    authService.current-user = $root-scope.current-user = null
     $state.go 'app.login'

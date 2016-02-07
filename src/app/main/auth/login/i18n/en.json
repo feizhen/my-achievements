@@ -2,7 +2,7 @@
     "LOGIN": {
         "username": "Username",
         "TITLE": "Log in to your account",
-        "INVALID": "Email or password error!",
+        "INVALID": "Username or password error!",
         "EMAIL": "Email",
         "PASSWORD": "Password",
         "REMEMBER_ME": "Remember Me",

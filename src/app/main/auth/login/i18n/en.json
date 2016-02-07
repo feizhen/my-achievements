@@ -1,5 +1,6 @@
 {
     "LOGIN": {
+        "username": "Username",
         "TITLE": "Log in to your account",
         "INVALID": "Email or password error!",
         "EMAIL": "Email",

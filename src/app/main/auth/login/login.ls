@@ -17,7 +17,7 @@ angular.module 'app.auth.login', []
         controller-as           : 'vm'
         controller              : ($scope, $root-scope, authService, $state)->
           login: -> authService.auth @form .then (result)~> 
-            console.log "user with email: #{@form.email} is registed? ", result.is-registed
+            console.log "user: #{@form.username} is registed? ", result.is-registed
             if result.is-registed 
               @invalid-user = false
               $state.go 'app.sample'
@@ -28,7 +28,7 @@ angular.module 'app.auth.login', []
 .factory 'authService',  (api, $root-scope)-> 
   service = 
     current-user: null
-    auth: ({email, password})-> api.auth.is-registed-user {email, password} .then (result)->
+    auth: ({username, password})-> api.auth.is-registed-user {username, password} .then (result)->
       service.current-user = $root-scope.current-user = result.user if result.is-registed
       result
 

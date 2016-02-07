@@ -15,11 +15,11 @@
                     $state.go('app.lock');
                 },
                 unlock: function(params){
-                    if (!service.currentUser || service.currentUser.username != params.username){
-                        $state.go('$login');
+                    if (!service.currentUser || service.currentUser.fullname != params.username){
+                        $state.go('app.login');
                         return Promise.resolve('login');
                     };
-                    return authService.auth({email: authService.currentUser.email, password: params.password}).then(function(result){
+                    return authService.auth({username: authService.currentUser.username, password: params.password}).then(function(result){
                         if (result.isRegisted) {
                             $state.go(service.stateBeforeLock);
                             service.stateBeforeLock = null;

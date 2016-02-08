@@ -11,7 +11,7 @@ var $ = require('gulp-load-plugins')({
 
 gulp.task('partials', function ()
 {
-    var _jade = config.jade();
+    var _jade = conf.jade();
     var _html = gulp.src([
             path.join(conf.paths.src, '/app/**/*.html'),
             path.join(conf.paths.tmp, '/serve/app/**/*.html')

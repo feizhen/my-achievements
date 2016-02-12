@@ -34,7 +34,8 @@ angular.module 'app.auth.login', []
 
 .run ($root-scope, $state, authService)!->
   $root-scope.$on '$stateChangeStart', (event, to-state)!->
-    return if !!authService.current-user or to-state.name is 'app.login'
+    return true # JUST FOR Dev. !
+    # return if !!authService.current-user or to-state.name is 'app.login'
 
     event.prevent-default!
     $state.go 'app.login'

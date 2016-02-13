@@ -20,7 +20,7 @@ angular.module 'app.auth.login', []
             console.log "user: #{@form.username} is registed? ", result.is-registed
             if result.is-registed 
               @invalid-user = false
-              $state.go 'app.sample'
+              $state.go 'app.course.dashboard'
             else
               @invalid-user = true
   }

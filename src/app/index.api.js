@@ -183,20 +183,20 @@
                .then(function(result){
                   var users = result.data.users
                   for (var i = users.length - 1 ; i >= 0 ; i--){
-                     if(users[i].username === params.username && users[i].password === params.password ) 
-                        return Promise.resolve({isRegisted: true, user: users[i]}); 
+                     if(users[i].username === params.username && users[i].password === params.password )
+                        return Promise.resolve({isRegisted: true, user: users[i]});
                   }
                   return Promise.resolve({isRegisted: false});
                });
          }
         }
 
-        api.quickPanel = {
-            activities: $resource(api.baseUrl + 'quick-panel/activities.json'),
-            contacts  : $resource(api.baseUrl + 'quick-panel/contacts.json'),
-            events    : $resource(api.baseUrl + 'quick-panel/events.json'),
-            notes     : $resource(api.baseUrl + 'quick-panel/notes.json')
-        };
+        // api.quickPanel = {
+        //     activities: $resource(api.baseUrl + 'quick-panel/activities.json'),
+        //     contacts  : $resource(api.baseUrl + 'quick-panel/contacts.json'),
+        //     events    : $resource(api.baseUrl + 'quick-panel/events.json'),
+        //     notes     : $resource(api.baseUrl + 'quick-panel/notes.json')
+        // };
 
         return api;
     }

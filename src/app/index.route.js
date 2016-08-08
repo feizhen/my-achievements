@@ -16,7 +16,7 @@
         // otherwise, the login guard (@see login.ls) will be in infinite loop
         $urlRouterProvider.otherwise( function($injector, $location) {
             var $state = $injector.get("$state");
-            $state.go("app.course.dashboard");
+            $state.go("app.student.homework-dashboard");
         });
 
 
@@ -75,18 +75,18 @@
                         templateUrl: layouts[layoutStyle].main,
                         controller : 'MainController as vm'
                     },
-                    'toolbar@app'   : {
-                        templateUrl: layouts[layoutStyle].toolbar,
-                        controller : 'ToolbarController as vm'
-                    },
+                    // 'toolbar@app'   : {
+                    //     templateUrl: layouts[layoutStyle].toolbar,
+                    //     controller : 'ToolbarController as vm'
+                    // },
                     'navigation@app': {
                         templateUrl: layouts[layoutStyle].navigation,
                         controller : 'NavigationController as vm'
-                    },
-                    'quickPanel@app': {
-                        templateUrl: 'app/quick-panel/quick-panel.html',
-                        controller : 'QuickPanelController as vm'
                     }
+                    // 'quickPanel@app': {
+                    //     templateUrl: 'app/quick-panel/quick-panel.html',
+                    //     controller : 'QuickPanelController as vm'
+                    // }
                 }
             });
     }

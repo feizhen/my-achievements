@@ -10,6 +10,8 @@ angular
     current-user = null
     service =
       login: login
+      logout: logout
+      get-user-from-cookie: get-user-from-cookie
 
     return service
 
@@ -27,3 +29,13 @@ angular
                   $cookies.put-object 'cookieUser', current-user
                   return Promise.resolve current-user
                 Promise.resolve current-user
+
+    !function logout
+      $root-scope.current-user = null
+      $cookies.remove 'cookieUser'
+
+    !function get-user-from-cookie
+      current-user := $cookies.get-object 'cookieUser' || null
+      if current-user != null
+        $root-scope.current-user = current-user
+      return Promise.resolve current-user

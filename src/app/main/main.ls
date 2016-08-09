@@ -12,7 +12,7 @@ angular
     auth = auth-service
     user = auth.get-user!
 
-    if user
+    !function set-user-items
       nav.save-item 'user', {
         title: '用户'
         group: true
@@ -31,6 +31,35 @@ angular
           auth.logout!
       }
 
+    !function set-student-items
+      nav.save-item 'student', {
+        title: '作业'
+        weight: 1
+        group: true
+      }
+      nav.save-item 'student.homework-dashboard', {
+        title: '作业概览'
+        weight: 1
+        group: false
+        state: 'app.student.homework-dashboard'
+        icon: 'icon-chart-line'
+      }
+      nav.save-item 'student.homework-detail', {
+        title: '作业详情'
+        weight: 1
+        group: false
+        state: 'app.student.homework-detail'
+        icon: 'icon-border-color'
+      }
+      
+    if user
+      set-user-items!
+      if user.role is 'student'
+        set-student-items!
+
+
     $scope.$on '$viewContentAnimationEnded', (event) -> $root-scope.$broadcast 'msSplashScreen::remove' if event.target-scope.$id is $scope.$id
+
     state-change-listener-stop = $root-scope.$on '$stateChangeStart', (event, to-state, from-state)!->
+
     $root-scope.$on 'destroy', !-> state-change-listener-stop!

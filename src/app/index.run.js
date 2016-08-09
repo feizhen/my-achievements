@@ -13,14 +13,10 @@
         var auth = authService;
         auth.getUserFromCookie().then(function(user){
 
-            if (user) {
-
-                console.log("欢迎回来!");
-
-            } else {
-
+            if ( !user ) {
+              
                 $state.go('app.auth.login');
-                
+
             }
         });
 

@@ -38,7 +38,6 @@ angular
                 Promise.resolve current-user
 
     !function logout
-      console.log '退出登录'
       current-user := null
       $cookies.remove 'cookieUser'
       $state.go 'app.auth.login'

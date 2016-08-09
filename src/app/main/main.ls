@@ -26,7 +26,7 @@ angular
         state: 'app.auth.profile'
       }
       nav.save-item 'user.logout', {
-        title: '退出登录'
+        title: '退出'
         icon: 'icon-login'
         event: -> auth.logout!
       }

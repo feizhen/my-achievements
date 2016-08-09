@@ -172,10 +172,12 @@
 
         var api = {};
 
-        var loopbackApiBaseUrl = 'http://localhost:3000/api'
+        var loopbackApiBaseUrl = 'http://localhost:3000/api';
 
         //db url
-        api.lb_users = $resource(loopbackApiBaseUrl + '/Customers')
+        api.lb_users = $resource(loopbackApiBaseUrl + '/Customers');
+        api.lb_reviews = $resource(loopbackApiBaseUrl + '/Reviews');
+        api.lb_homeworks = $resource(loopbackApiBaseUrl + '/Homework');
 
         // api.quickPanel = {
         //     activities: $resource(api.baseUrl + 'quick-panel/activities.json'),

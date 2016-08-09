@@ -1,1 +1,5 @@
 ma-page-header(location="作业概览" name="{{vm.user.fullname}}")
+
+md-content#homework-dashboard.p-12.wrapper-bg
+  div#charts-container(layout="row" layout-sm="column")
+    stu-hw-chart( data="vm.scores" ids="vm.homeworkIds" type="score" flex="50" flex-sm="100" )

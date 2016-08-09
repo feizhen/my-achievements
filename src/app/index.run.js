@@ -12,17 +12,40 @@
         // Activate loading indicator
         var auth = authService;
         auth.getUserFromCookie().then(function(user){
+
             if (user) {
-                console.log("从cookie获取用户成功!");
+
+                console.log("欢迎回来!");
+
             } else {
-                console.log("从cookie获取用户失败,跳转至登录页面");
+
                 $state.go('app.auth.login');
+                
             }
         });
 
-        var stateChangeStartEvent = $rootScope.$on('$stateChangeStart', function ()
+        var stateChangeStartEvent = $rootScope.$on('$stateChangeStart', function (event, toState)
         {
             $rootScope.loadingProgress = true;
+
+            if ( auth.isLoggedIn() ) {
+
+                if ( !auth.isAuthorizaed(toState) ) {
+
+                    $state.go('app.error-404');
+
+                    event.preventDefault();
+
+                }
+
+            } else if ( !auth.isLoggedIn() && toState.name != 'app.auth.login' ) {
+
+                $state.go('app.auth.login');
+
+                event.preventDefault();
+
+            }
+
         });
 
         // De-activate loading indicator

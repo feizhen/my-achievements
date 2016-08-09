@@ -73,8 +73,9 @@ angular
 
     if user
       set-user-items!
-      set-teacher-items!
       set-student-items!
+      set-teacher-items!
+
 
 
     $scope.$on '$viewContentAnimationEnded', (event) -> $root-scope.$broadcast 'msSplashScreen::remove' if event.target-scope.$id is $scope.$id

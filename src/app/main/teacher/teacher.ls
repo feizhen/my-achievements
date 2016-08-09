@@ -10,5 +10,6 @@ angular
     $state-provider
       .state 'app.teacher', {
         abstract: true
-        role: 'teacher'
+        data:
+          role: 'teacher'
       }

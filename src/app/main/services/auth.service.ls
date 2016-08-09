@@ -15,6 +15,7 @@ angular
       is-student:           is-student
       is-teacher:           is-teacher
       is-ta:                is-ta
+      is-authorizaed:       is-authorizaed
       is-admin:             is-admin
       get-user:             get-user
       get-dest:             get-dest
@@ -63,13 +64,16 @@ angular
       return current-user
 
     !function is-student
-      return current-user.role is 'student'
+      return current-user && current-user.role is 'student'
 
     !function is-teacher
-      return current-user.role is 'teacher'
+      return current-user && current-user.role is 'teacher'
 
     !function is-admin
-      return current-user.role is 'admin'
+      return current-user && current-user.role is 'admin'
 
     !function is-ta
-      return current-user.role is 'ta'
+      return current-user && current-user.role is 'ta'
+
+    !function is-authorizaed (to-state)
+      return !to-state.data || !to-state.data.role || to-state.data.role == current-user.role

@@ -13,7 +13,6 @@
                 'ngSanitize',
                 'ngMaterial',
                 'pascalprecht.translate',
-                'ui.router'
-                
+                'ui.router',
             ]);
 })();

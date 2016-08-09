@@ -4,13 +4,15 @@ angular
   .module 'fuse'
   .factory 'authService', authService
 
-  authService.$inject = ['$resource', '$rootScope', '$cookies', 'apiResolver']
+  authService.$inject = ['$resource', '$rootScope', '$cookies', 'apiResolver', '$state']
 
-  !function authService ($resource, $root-scope, $cookies, api-resolver)
+  !function authService ($resource, $root-scope, $cookies, api-resolver, $state)
     current-user = null
     service =
       login: login
       logout: logout
+      get-user: get-user
+      is-logged-in: is-logged-in
       get-user-from-cookie: get-user-from-cookie
 
     return service
@@ -25,17 +27,20 @@ angular
               .then (user) ->
                 if user.length
                   current-user := user[0]
-                  $root-scope.current-user = current-user
                   $cookies.put-object 'cookieUser', current-user
                   return Promise.resolve current-user
                 Promise.resolve current-user
 
     !function logout
-      $root-scope.current-user = null
+      current-user := null
       $cookies.remove 'cookieUser'
+
+    !function is-logged-in
+      return current-user != null
+
+    !function get-user
+      return current-user
 
     !function get-user-from-cookie
       current-user := $cookies.get-object 'cookieUser' || null
-      if current-user != null
-        $root-scope.current-user = current-user
       return Promise.resolve current-user

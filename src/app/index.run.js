@@ -7,9 +7,19 @@
         .run(runBlock);
 
     /** @ngInject */
-    function runBlock($rootScope, $timeout, $state)
+    function runBlock($rootScope, $timeout, $state, authService)
     {
         // Activate loading indicator
+        var auth = authService;
+        auth.getUserFromCookie().then(function(user){
+            if (user) {
+                console.log("从cookie获取用户成功!");
+            } else {
+                console.log("从cookie获取用户失败,跳转至登录页面");
+                $state.go('app.auth.login');
+            }
+        });
+
         var stateChangeStartEvent = $rootScope.$on('$stateChangeStart', function ()
         {
             $rootScope.loadingProgress = true;
@@ -32,6 +42,6 @@
         {
             stateChangeStartEvent();
             stateChangeSuccessEvent();
-        })
+        });
     }
 })();

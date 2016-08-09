@@ -17,6 +17,9 @@ angular.module 'app.auth.login', []
         controller-as           : 'vm'
         controller              : ( auth-service, $state, $scope, $root-scope ) ->
 
+          auth = auth-service
+          user = auth.get-user!
+
           # 判断是否是退出登录的操作
           !function _is-logout (from-state)
             from-state-path = from-state.name
@@ -27,13 +30,10 @@ angular.module 'app.auth.login', []
             is-logout = _is-logout from-state
             if is-logout
               console.log "退出登录"
-              auth-service.logout!
-      
+              auth.logout!
+
           login: ->
-            auth-service.login @form .then (user) ->
+            auth.login @form .then (user) ->
               if user
                 $state.go 'app.student.homework-dashboard'
-
-
-
   }

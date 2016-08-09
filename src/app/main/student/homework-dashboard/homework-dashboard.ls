@@ -14,7 +14,7 @@ angular
           'content@app':
             template-url: 'app/main/student/homework-dashboard/homework-dashboard.html'
             controller-as: 'vm'
-            controller: ($scope, $root-scope) !->
+            controller: ($scope, $root-scope, auth-service) !->
               vm = @
-              vm.user = $root-scope.current-user
+              vm.user = auth-service.get-user!
       }

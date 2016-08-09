@@ -4,14 +4,15 @@ angular
   .module 'fuse'
   .factory 'authService', authService
 
-  authService.$inject = ['$resource', '$rootScope', '$cookies', 'apiResolver', '$state']
+  authService.$inject = ['$resource', '$cookies', '$state', 'apiResolver']
 
-  !function authService ($resource, $root-scope, $cookies, api-resolver, $state)
+  !function authService ($resource, $cookies, $state, api-resolver)
     current-user = null
     service =
       login: login
       logout: logout
       get-user: get-user
+      get-dest: get-dest
       is-logged-in: is-logged-in
       get-user-from-cookie: get-user-from-cookie
 
@@ -32,14 +33,26 @@ angular
                 Promise.resolve current-user
 
     !function logout
+      console.log '退出登录'
       current-user := null
       $cookies.remove 'cookieUser'
+      $state.go 'app.auth.login'
 
     !function is-logged-in
       return current-user != null
 
     !function get-user
       return current-user
+
+    !function get-dest
+      role = current-user && current-user.role
+      if role
+        switch role
+        | 'student' => return 'app.student.homework-dashboard'
+        | 'teacher' => return 'app.student.homework-dashboard'
+        | otherwise => return 'app.auth.login'
+      else
+        return 'app.auth.login'
 
     !function get-user-from-cookie
       current-user := $cookies.get-object 'cookieUser' || null

@@ -1,14 +1,36 @@
 'use strict'
-angular.module 'fuse'
+angular
+  .module 'fuse'
+  .controller 'MainController', MainController
 
-.controller 'MainController', ($scope, $root-scope, ms-navigation-service, $state)!->
-  'ngInject'
-  # Remove the splash screen
-  $scope.$on '$viewContentAnimationEnded', (event)-> $root-scope.$broadcast 'msSplashScreen::remove' if event.target-scope.$id is $scope.$id
+  MainController.$inject = ['$scope', '$rootScope', '$state', 'msNavigationService', 'authService']
 
-  nav = ms-navigation-service
-  nav.save-item 'logout', { title: '退出', weight: 2, state: 'app.auth.login', group: false}
+  !function MainController ($scope, $root-scope, $state, ms-navigation-service, auth-service)
+    'ngInject'
 
-  state-change-listener-stop = $root-scope.$on '$stateChangeStart', (event, to-state, from-state)!->
+    nav = ms-navigation-service
+    auth = auth-service
+    user = auth.get-user!
 
-  $root-scope.$on 'destroy', !-> state-change-listener-stop!
+    if user
+      nav.save-item 'user', {
+        title: '用户'
+        group: true
+        weight: 2
+        class: 'user'
+      }
+      nav.save-item 'user.profile', {
+        title: " #{user.fullname}, 您好!"
+        image: user.avatar
+        state: 'app.auth.profile'
+      }
+      nav.save-item 'user.logout', {
+        title: '退出登录'
+        icon: 'icon-login'
+        event: !->
+          auth.logout!
+      }
+
+    $scope.$on '$viewContentAnimationEnded', (event) -> $root-scope.$broadcast 'msSplashScreen::remove' if event.target-scope.$id is $scope.$id
+    state-change-listener-stop = $root-scope.$on '$stateChangeStart', (event, to-state, from-state)!->
+    $root-scope.$on 'destroy', !-> state-change-listener-stop!

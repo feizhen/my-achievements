@@ -8,6 +8,7 @@ angular
 
   !function run-block (ms-navigation-service)
     nav = ms-navigation-service
+
     nav.save-item 'student', {
       title: '作业'
       weight: 1
@@ -18,10 +19,12 @@ angular
       weight: 1
       group: false
       state: 'app.student.homework-dashboard'
+      icon: 'icon-chart-line'
     }
     nav.save-item 'student.homework-detail', {
       title: '作业详情'
       weight: 1
       group: false
       state: 'app.student.homework-detail'
+      icon: 'icon-border-color'
     }

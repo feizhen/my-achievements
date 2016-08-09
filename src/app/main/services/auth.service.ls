@@ -9,15 +9,15 @@ angular
   !function authService ($resource, $cookies, $state, api-resolver)
     current-user = null
     service =
-      login: login
-      logout: logout
-      get-user: get-user
-      is-student: is-student
-      is-teacher: is-teacher
-      is-ta: is-ta
-      is-admin: is-admin
-      get-dest: get-dest
-      is-logged-in: is-logged-in
+      login:                login
+      logout:               logout
+      is-logged-in:         is-logged-in
+      is-student:           is-student
+      is-teacher:           is-teacher
+      is-ta:                is-ta
+      is-admin:             is-admin
+      get-user:             get-user
+      get-dest:             get-dest
       get-user-from-cookie: get-user-from-cookie
 
     return service
@@ -42,24 +42,6 @@ angular
       $cookies.remove 'cookieUser'
       $state.go 'app.auth.login'
 
-    !function is-logged-in
-      return current-user != null
-
-    !function get-user
-      return current-user
-
-    !function is-student
-      return current-user.role is 'student'
-
-    !function is-teacher
-        return current-user.role is 'teacher'
-
-    !function is-admin
-      return current-user.role is 'admin'
-
-    !function is-ta
-      return current-user.role is 'ta'
-
     !function get-dest
       role = current-user && current-user.role
       if role
@@ -73,3 +55,21 @@ angular
     !function get-user-from-cookie
       current-user := $cookies.get-object 'cookieUser' || null
       return Promise.resolve current-user
+
+    !function is-logged-in
+      return current-user != null
+
+    !function get-user
+      return current-user
+
+    !function is-student
+      return current-user.role is 'student'
+
+    !function is-teacher
+      return current-user.role is 'teacher'
+
+    !function is-admin
+      return current-user.role is 'admin'
+
+    !function is-ta
+      return current-user.role is 'ta'

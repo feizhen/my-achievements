@@ -28,8 +28,7 @@ angular
       nav.save-item 'user.logout', {
         title: '退出登录'
         icon: 'icon-login'
-        event: !->
-          auth.logout!
+        event: -> auth.logout!
       }
 
     !function set-student-items

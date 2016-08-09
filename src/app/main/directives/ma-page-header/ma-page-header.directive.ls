@@ -11,5 +11,6 @@ angular
       scope:
         location:'@'
         name: '@'
+        type: '@'
 
     return directive

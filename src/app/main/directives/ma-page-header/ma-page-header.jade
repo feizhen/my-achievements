@@ -3,4 +3,5 @@ div#ma-page-header.fullwidth.p-24.default-fg(layout="column" layout-align="end s
     md-icon.s16.m-0.mr-12(md-font-icon="icon-home")
     md-icon.s16.m-0.mr-12(md-font-icon="icon-chevron-right")
     span.md-body-1(ng-bind="location")
-  span.md-display-1.font-weight-300.mt-6 欢迎回来, {{name}}!
+  span.md-display-1.font-weight-300.mt-6(ng-if="type == 'teacher'") 欢迎回来, {{name}}老师!
+  span.md-display-1.font-weight-300.mt-6(ng-if="type != 'teacher'") 欢迎回来, {{name}}!

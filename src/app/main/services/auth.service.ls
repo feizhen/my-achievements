@@ -12,6 +12,10 @@ angular
       login: login
       logout: logout
       get-user: get-user
+      is-student: is-student
+      is-teacher: is-teacher
+      is-ta: is-ta
+      is-admin: is-admin
       get-dest: get-dest
       is-logged-in: is-logged-in
       get-user-from-cookie: get-user-from-cookie
@@ -44,12 +48,24 @@ angular
     !function get-user
       return current-user
 
+    !function is-student
+      return current-user.role is 'student'
+
+    !function is-teacher
+        return current-user.role is 'teacher'
+
+    !function is-admin
+      return current-user.role is 'admin'
+
+    !function is-ta
+      return current-user.role is 'ta'
+
     !function get-dest
       role = current-user && current-user.role
       if role
         switch role
         | 'student' => return 'app.student.homework-dashboard'
-        | 'teacher' => return 'app.student.homework-dashboard'
+        | 'teacher' => return 'app.teacher.homework-list'
         | otherwise => return 'app.auth.login'
       else
         return 'app.auth.login'

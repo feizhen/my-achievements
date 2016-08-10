@@ -19,18 +19,30 @@ angular
             user = auth-service.get-user!
             achievements-service.get-user-scores user.username .then (data) -> data
 
+          ranks: (auth-service, achievements-service) ->
+            user = auth-service.get-user!
+            achievements-service.get-user-ranks user.username, user.class
+
         views:
           'content@app':
             template-url: 'app/main/student/homework-dashboard/homework-dashboard.html'
             controller-as: 'vm'
-            controller: ($scope, auth-service, homeworks, scores) !->
+            controller: ($scope, auth-service, homeworks, scores, ranks) !->
 
               get-homework-ids = (homeworks) ->
                 homework-ids = [homework.id for homework in homeworks]
 
+              arr2string = (arr) -> arr.join!
+
               vm = @
               vm.user = auth-service.get-user!
-              vm.scores = scores.join!
-              vm.homeworkIds = get-homework-ids homeworks .join!
+              vm.homeworks = homeworks
+              vm.scores = arr2string scores
+              vm.ranks = arr2string ranks
+              vm.homework-ids = arr2string get-homework-ids homeworks
+              vm.switch =
+                future:  true
+                present: true
+                finish:  true
 
       }

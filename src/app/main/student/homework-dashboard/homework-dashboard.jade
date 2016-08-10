@@ -1,5 +1,19 @@
 ma-page-header(location="作业概览" name="{{vm.user.fullname}}")
 
 md-content#homework-dashboard.p-12.wrapper-bg
+  //- chart-container
   div#charts-container(layout="row" layout-sm="column")
-    stu-hw-chart( data="vm.scores" ids="vm.homeworkIds" type="score" flex="50" flex-sm="100" )
+    stu-hw-chart(data="vm.scores" ids="vm.homeworkIds" type="score" flex="50" flex-sm="100")
+    stu-hw-chart(data="vm.ranks" ids="vm.homeworkIds" type="rank" flex="50" flex-sm="100")
+    
+  //- info-container
+  div#info-container(layout="row" layout-align="space-between")
+    div.md-title.ph-12(layout="row" layout-align="center center") 作业列表
+    div#switches-container.ph-12(layout="row" layout-align="center center")
+      md-switch(aria-label="future" ng-model="vm.switch.future") 未开始
+      md-switch.md-warn(aria-label="present" ng-model="vm.switch.present") 进行中
+      md-switch.md-primary(aria-label="finish" ng-model="vm.switch.finish") 已结束
+    
+  //- hw-cards-container  
+  div#hw-cards-container(layout="row" layout-wrap)
+    stu-hw-card(ng-repeat="homework in vm.homeworks" homework="homework" flex="100" flex-gt-xs="50" flex-gt-sm="33" flex-gt-lg="25" ng-if="vm.switch[homework.class.status]")

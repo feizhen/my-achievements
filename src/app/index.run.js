@@ -14,7 +14,7 @@
         auth.getUserFromCookie().then(function(user){
 
             if ( !user ) {
-              
+
                 $state.go('app.auth.login');
 
             }

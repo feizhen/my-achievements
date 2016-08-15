@@ -16,4 +16,4 @@ md-content#homework-dashboard.p-12.wrapper-bg
     
   //- hw-cards-container  
   div#hw-cards-container(layout="row" layout-wrap)
-    stu-hw-card(ng-repeat="homework in vm.homeworks" homework="homework" flex="100" flex-gt-xs="50" flex-gt-sm="33" flex-gt-lg="25" ng-if="vm.switch[homework.class.status]")
+    stu-hw-card(ng-repeat="homework in vm.homeworks" homework="homework" score="vm._scores[homework.id-1]" rank="vm._ranks[homework.id-1]" flex="100" flex-gt-xs="50" flex-gt-sm="33" flex-gt-lg="25" ng-if="vm.switch[homework.class.status]")

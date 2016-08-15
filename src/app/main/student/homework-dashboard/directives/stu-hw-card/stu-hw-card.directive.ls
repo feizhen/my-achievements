@@ -8,10 +8,12 @@ angular
       restrict: 'E'
       scope:
         homework: '='
+        score: '@'
+        rank: '@'
       controller-as: 'vm'
       controller: ($scope, $md-dialog) !->
         vm = @
-        vm.id = $scope.homework.id
+        vm.id = $scope.homework.homework-id
         vm.hid = '作业' + vm.id
         vm.title = $scope.homework.title
         vm.status = $scope.homework.class.status

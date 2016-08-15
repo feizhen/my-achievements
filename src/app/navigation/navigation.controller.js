@@ -15,7 +15,8 @@
         vm.bodyEl = angular.element('body');
         vm.folded = true;
         vm.msScrollOptions = {
-            suppressScrollX: true
+            suppressScrollX: true,
+            suppressScrollY: true
         };
 
         // Methods

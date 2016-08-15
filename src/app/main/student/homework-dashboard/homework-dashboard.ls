@@ -30,15 +30,17 @@ angular
             controller: ($scope, auth-service, homeworks, scores, ranks) !->
 
               get-homework-ids = (homeworks) ->
-                homework-ids = [homework.id for homework in homeworks]
+                homework-ids = [homework.homework-id for homework in homeworks]
 
               arr2string = (arr) -> arr.join!
 
               vm = @
               vm.user = auth-service.get-user!
               vm.homeworks = homeworks
-              vm.scores = arr2string scores
-              vm.ranks = arr2string ranks
+              vm._scores = scores
+              vm.scores = arr2string vm._scores
+              vm._ranks = ranks
+              vm.ranks = arr2string vm._ranks
               vm.homework-ids = arr2string get-homework-ids homeworks
               vm.switch =
                 future:  true

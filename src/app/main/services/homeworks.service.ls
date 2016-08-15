@@ -23,7 +23,7 @@ angular
               for i from 0 til result.length-1
                 _class = _.remove result[i].classes, (c) -> c.class_id is class-id
                 homeworks.push {
-                  id: result[i].id
+                  homework-id: result[i].homework_id
                   title: result[i].title
                   description: result[i].description
                   class: _class[0]

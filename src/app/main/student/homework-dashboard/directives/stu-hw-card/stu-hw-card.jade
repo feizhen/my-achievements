@@ -47,7 +47,7 @@ ms-widget.p-12(layout="column" flippable="true")
     div.widget-back-body.p-24(layout="column" layout-align="space-between stretch" flex="100")
       div.mv-6(layout="row" layout-align="center center" flex="100" )
         div(flex="50" layout="row" layout-align="end center") 你的得分:
-        div.ph-24(flex="50" layout="row" layout-align="start center") 100 
+        div.ph-24(flex="50" layout="row" layout-align="start center" ng-bind="vm.score")  
       div.mv-6(layout="row" layout-align="center center" flex="100")
         div(flex="50" layout="row" layout-align="end center") 你的排名:
-        div.ph-24(flex="50" layout="row" layout-align="start center") 1
+        div.ph-24(flex="50" layout="row" layout-align="start center" ng-bind="vm.rank") 

@@ -34,19 +34,18 @@ angular
 
         vm.pagination = pa.get-new!
 
-
         !function get-rank-list
           return achi.get-rank-list vm.class, vm.current-homework-id .then (result) ->
             vm.pagination.current-page := 0
             vm.rank-list = result
             vm.pagination.num-of-pages := Math.ceil result.length / vm.pagination.page-size
 
-
     return directive
 
   !function start-from
-    return (input, start)->
-            if (input === undefined)
-              return input
-            else
-              return input.slice +start
+    return
+      (input, start)->
+        if (input === undefined)
+          return input
+        else
+          return input.slice +start

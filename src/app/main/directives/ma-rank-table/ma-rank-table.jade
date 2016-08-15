@@ -1,0 +1,27 @@
+div.p-12(flex="100")
+  div.white-bg.md-whiteframe-2dp.rank-table
+    //-rank table header
+    div.ph-24.pv-12.border-bottom(layout="row" layout-align="space-between center")
+      div.md-title  作业排名
+      div.pv-12
+        md-select.simplified(ng-model="vm.currentHomeworkId" aria-label="Change homework" ng-change="vm.getRankList()")
+          md-option(ng-repeat="homeworkId in vm.homeworkIds" ng-value="homeworkId") 作业{{homeworkId}}
+    
+    //- rank table body
+    div.p-12.border-bottom(layout="row" layout-align="space-between center")
+      div(flex="20" layout="row" layout-align="center") 排名
+      div(flex="30" layout="row" layout-align="center") 姓名
+      div(flex="25" layout="row" layout-align="center") 小组
+      div(flex="25" layout="row" layout-align="center") 得分
+    
+    md-list-item.border-bottom.hoverable.ph-6.pointer(layout="row" layout-align="space-between center" ng-repeat="item in vm.rankList | startFrom:vm.pagination.currentPage * vm.pagination.pageSize | limitTo: vm.pagination.pageSize track by $index ")
+        div(flex="20" layout="row" layout-align="center" ng-class="top-{{$index+1}}") {{$index+1}}
+        div(flex="30" layout="row" layout-align="center") {{item.reviewee.fullname}}
+        div(flex="25" layout="row" layout-align="center") {{item.group}}
+        div(flex="25" layout="row" layout-align="center") {{item.score}}
+      
+    //- rank table footer
+    div.p-6(layout="row" layout-align="center center")
+      md-button.m-12(ng-disabled="vm.pagination.isFirstPage()" ng-click="vm.pagination.prevPage()" ) 上一页
+      span {{vm.pagination.currentPage+1}}/{{vm.pagination.numOfPages}}
+      md-button.m-12(ng-disabled="vm.pagination.isLastPage()" ng-click="vm.pagination.nextPage()")  下一页

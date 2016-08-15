@@ -13,7 +13,6 @@ angular
       controller-as: 'vm'
       controller: ($scope, $md-dialog) !->
         vm = @
-        console.log $scope.homework
         vm.id = $scope.homework.homework-id
         vm.hid = '作业' + vm.id
         vm.title = $scope.homework.title

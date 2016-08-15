@@ -1,7 +1,7 @@
 'use strict'
 
 angular
-  .module 'app.student.homework-dashboard', []
+  .module 'app.student.homework-dashboard', ['angularFileUpload']
   .config Student-homework-dashboard-config
 
   Student-homework-dashboard-config.$inject = ['$stateProvider']
@@ -38,10 +38,8 @@ angular
               vm.user = auth-service.get-user!
               vm.homeworks = homeworks
               vm._scores = scores
-              console.log vm._scores
               vm.scores = arr2string vm._scores
               vm._ranks = ranks
-              console.log vm._ranks
               vm.ranks = arr2string vm._ranks
               vm.homework-ids = arr2string get-homework-ids homeworks
               vm.switch =

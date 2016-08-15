@@ -13,10 +13,13 @@ angular
       controller-as: 'vm'
       controller: ($scope, $md-dialog) !->
         vm = @
+        console.log $scope.homework
         vm.id = $scope.homework.homework-id
         vm.hid = '作业' + vm.id
         vm.title = $scope.homework.title
         vm.status = $scope.homework.class.status
+        vm.score = $scope.score
+        vm.rank = $scope.rank
         vm.style =
           future:
             text: '未开始'

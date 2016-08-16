@@ -11,29 +11,14 @@ angular
       scope:
         current: '='
         class: '='
-        distribution: '='
 
       controller-as: 'vm'
       controller: ($scope, achievements-service) !->
+
         achi = achievements-service
-
         vm = @
-        vm.current-homework-id = +$scope.current || 1
-        vm.class-id = +$scope.class
-        vm.distribution = $scope.distribution
-        vm.get-distribution = get-distribution
 
-        #data
-        vm.fail = vm.distribution[0]
-        vm.sixty-to-seventy = vm.distribution[1]
-        vm.seventy-to-eighty = vm.distribution[2]
-        vm.eighty-to-ninety = vm.distribution[3]
-        vm.ninety-to-full = vm.distribution[4]
-
-        !function get-distribution
-          achi.get-distribution vm.class-id, vm.current-homework-id .then(result) !->
-            vm.distribution := result
-
+        #chart config
         vm.chart-config = {
           config:
             refreshDataOnly: true
@@ -43,7 +28,7 @@ angular
             chart:
               type: 'pieChart',
               color: ['#607D8B', '#9c27b0','#03a9f4','#e91e63','#f44336']
-              height: 400
+              height: 360
               margin:
                 top   : 0
                 bottom: 0
@@ -54,15 +39,43 @@ angular
               cornerRadius: 0
               labelType   : 'percent'
               padAngle    : 0.02
-              x :  (d)->
+              x : (d)->
                 d.label
               y : (d)->
                 return d.value
               tooltip     :
                 gravity: 's'
                 classes: 'gravity-s'
+          data: []
+        }
 
-          data: [
+        #定义数据
+        vm.fail = 0
+        vm.sixty-to-seventy = 0
+        vm.seventy-to-eighty = 0
+        vm.eighty-to-ninety = 0
+        vm.ninety-to-full = 0
+
+        vm.current-homework-id = +$scope.current
+        vm.class-id = +$scope.class
+        vm.set-distribution = (homework-id) !->
+          achi.get-distribution vm.class-id, homework-id .then (data) !->
+            set-chart-data data
+
+        $scope.$watch 'current', !->
+          #这里有坑，$scope.current 会被当做string传入,要转成number才能取到数据
+          vm.current-homework-id = +$scope.current
+          vm.set-distribution vm.current-homework-id
+
+        !function set-chart-data (data)
+
+          vm.fail := data[0]
+          vm.sixty-to-seventy := data[1]
+          vm.seventy-to-eighty := data[2]
+          vm.eighty-to-ninety := data[3]
+          vm.ninety-to-full := data[4]
+
+          vm.chart-config.data = [
             {
               label: '<60'
               value: vm.fail
@@ -84,6 +97,5 @@ angular
               value: vm.ninety-to-full
             }
           ]
-        }
 
     return directive

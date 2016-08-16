@@ -11,7 +11,7 @@ mixin md-menu-items
       span 互评
   md-menu-item(ng-if="vm.status === 'finish'")
     md-button(aria-label="Flip widget" ng-click="flipWidget()")
-      span 作业详情
+      span 作业成绩
 
 ms-widget.p-12(layout="column" flippable="true")
   //ms-widget-front
@@ -44,10 +44,13 @@ ms-widget.p-12(layout="column" flippable="true")
         md-button(class="md-icon-button" ng-click="flipWidget()" aria-label="Flip widget")
           md-icon(md-font-icon="icon-close")
     //widget-body      
-    div.widget-back-body.p-24(layout="column" layout-align="space-between stretch" flex="100")
+    div.widget-back-body.p-12(layout="column" layout-align="space-between stretch" flex="100")
       div.mv-6(layout="row" layout-align="center center" flex="100" )
         div(flex="50" layout="row" layout-align="end center") 你的得分:
         div.ph-24(flex="50" layout="row" layout-align="start center" ng-bind="vm.score")  
       div.mv-6(layout="row" layout-align="center center" flex="100")
         div(flex="50" layout="row" layout-align="end center") 你的排名:
         div.ph-24(flex="50" layout="row" layout-align="start center" ng-bind="vm.rank") 
+    
+    div.widget-back-foot.p-24(layout="row" layout-align="end")
+      a(ui-sref="app.student.homework-detail({id: vm.id})") 作业详情

@@ -4,7 +4,7 @@ div.p-12(flex="100")
     div.ph-24.pv-12.border-bottom(layout="row" layout-align="space-between center")
       div.md-title  作业排名
       div.pv-12
-        md-select.simplified(ng-model="vm.currentHomeworkId" aria-label="Change homework" ng-change="vm.getRankList()")
+        md-select.simplified(ng-model="vm.currentHomeworkId" aria-label="Change homework" ng-change="vm.getRankList(vm.currentHomeworkId)")
           md-option(ng-repeat="homeworkId in vm.homeworkIds" ng-value="homeworkId") 作业{{homeworkId}}
     
     //- rank table body

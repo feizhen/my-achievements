@@ -15,6 +15,7 @@
         // using the flowing instead, because the issue: https://github.com/angular-ui/ui-router/issues/600
         // otherwise, the login guard (@see login.ls) will be in infinite loop
         $urlRouterProvider.when('', '/')
+                          .when('/homework-detail', '/homework-detail/')
                           .when('/', function($injector, $location, authService) {
                             var auth = authService;
                             var dest = auth.getDest();

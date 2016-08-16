@@ -15,23 +15,20 @@ angular
             user = auth-service.get-user!
             homework-service.get-homeworks-by-class-id user.class
 
-          distribution: (auth-service, achievements-service, $state-params) ->
-            homework-id = +$state-params.id || 1
-            class-id = auth-service.get-user!.class
-            achievements-service.get-distribution class-id, homework-id
-
         views:
           'content@app':
             template-url: 'app/main/student/homework-detail/homework-detail.html'
             controller-as: 'vm'
 
-            controller: ($scope, $state-params, auth-service, homeworks, distribution) !->
+            controller: ($scope, $state-params, auth-service, homeworks) !->
 
               vm = @
               vm.user = auth-service.get-user!
               vm.homeworks = homeworks
-              vm.current = $state-params.id
+              vm.current = $state-params.id || 1
               vm.class-id = vm.user.class
-              vm.distribution = distribution
+
+              vm.set-current-homework-id = (homework-id) !->
+                vm.current = homework-id
 
       }

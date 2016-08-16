@@ -1,0 +1,8 @@
+div.p-12(flex="100")
+  div.white-bg.md-whiteframe-2dp.rank-table
+    //-distribution chart header
+    div.p-24.border-bottom(layout="row" layout-align="space-between center")
+      div.md-title  作业分布
+    
+    div.p-24
+      nvd3.h-400(config="vm.chartConfig.config" options="vm.chartConfig.options" data="vm.chartConfig.data")

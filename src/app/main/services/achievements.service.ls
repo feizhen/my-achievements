@@ -14,6 +14,7 @@ angular
       get-user-ranks : get-user-ranks
       get-user-rank  : get-user-rank
       get-rank-list  : get-rank-list
+      get-distribution: get-distribution
 
     return service
 
@@ -80,3 +81,29 @@ angular
                   pre-data.push data[i]
                 result = _.order-by pre-data, 'score', 'desc'
                 result
+
+    !function get-distribution (class-id, homework-id)
+
+      filter =
+        "where":
+          "class": class-id
+          "homework_id": homework-id
+          "reviewer.role": 'teacher'
+
+      return api-resolver.resolve 'lb_reviews@query', { "filter": filter } .then (data) ->
+
+              result = [0,0,0,0,0] #60,60-70,70-80,80-90,90-100
+
+              for item in data
+                if item.score < 60
+                  result[0]++
+                else if item.score >= 60 and item.score < 70
+                  result[1]++
+                else if item.score >= 70 and item.score < 80
+                  result[2]++
+                else if item.score >= 80 and item.score < 90
+                  result[3]++
+                else
+                  result[4]++
+
+              result

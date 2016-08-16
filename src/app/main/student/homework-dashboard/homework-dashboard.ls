@@ -17,7 +17,7 @@ angular
 
           scores: (auth-service, achievements-service) ->
             user = auth-service.get-user!
-            achievements-service.get-user-scores user.username .then (data) -> data
+            achievements-service.get-user-scores user.username
 
           ranks: (auth-service, achievements-service) ->
             user = auth-service.get-user!

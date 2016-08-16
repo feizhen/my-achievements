@@ -10,9 +10,10 @@ angular
       template-url: 'app/main/directives/ma-rank-table/ma-rank-table.html'
       restrict: 'EA'
       scope:
+
         homeworks: '='
-        current: '@'
-        class: '@'
+        current: '='
+        class: '='
 
       controller-as: 'vm'
       controller: ($scope, achievements-service, pagination-service) !->
@@ -28,13 +29,12 @@ angular
         vm.homeworks = $scope.homeworks
         vm.homework-ids = get-homework-ids $scope.homeworks
         vm.current-homework-id = +$scope.current || 1
+        vm.pagination = pa.get-new!
         vm.get-rank-list = get-rank-list
-
+        
         vm.get-rank-list!
 
-        vm.pagination = pa.get-new!
-
-        !function get-rank-list
+        !function get-rank-list (homework-id)
           return achi.get-rank-list vm.class, vm.current-homework-id .then (result) ->
             vm.pagination.current-page := 0
             vm.rank-list = result

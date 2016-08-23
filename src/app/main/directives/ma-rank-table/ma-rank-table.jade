@@ -15,9 +15,8 @@ div.p-12(flex="100")
       div(flex="25" layout="row" layout-align="center") 得分
     
     md-list-item.border-bottom.hoverable.pointer(layout="row" layout-align="space-between center" ng-repeat="item in vm.rankList | startFrom:vm.pagination.currentPage * vm.pagination.pageSize | limitTo: vm.pagination.pageSize track by $index ")
-        div(flex="20" layout="row" layout-align="center") 
-        {{vm.pagination.pageSize*vm.pagination.currentPage+$index+1}} 
-        //- 这里还是有bug，排名并列的显示会不正确
+        div(flex="20" layout="row" layout-align="center") {{vm.pagination.pageSize*vm.pagination.currentPage+$index+1}} 
+        //- #BUG 这里还是有bug，排名并列的显示会不正确
         div.font-weight-600(flex="30" layout="row" layout-align="center") {{item.reviewee.fullname}}
         div(flex="25" layout="row" layout-align="center") {{item.group}}
         div(flex="25" layout="row" layout-align="center") {{item.score}}

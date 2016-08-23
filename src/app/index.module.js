@@ -13,6 +13,7 @@
             'app.navigation',
             //Pages
             'app.auth',
-            'app.student'
+            'app.student',
+            'app.teacher'
         ]);
 })();

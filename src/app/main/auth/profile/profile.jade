@@ -1,0 +1,36 @@
+pro-page-header(user="vm.user")
+
+md-content#profile-container.p-12.wrapper-bg(layout="column" layout-gt-sm="row")
+	div.info-content.p-12(flex="100" flex-gt-sm="70" layout="column")
+		div.md-subhead.p-15.md-accent-bg(layout="row" layout-align="space-between center")
+			span 个人信息
+			a.white-fg(href="javascript: 0" ng-click="vm.modifyInformation($event)") 修改信息
+		div.p-15.white-bg.md-whiteframe-2dp(layout="column" layout-align="start space-between")
+			div.column-1.mb-15(layout="row" layout-align="space-between center")
+				div.info
+					p.title 姓名
+					p {{vm.user.fullname}}
+				div.info
+					p.title 班级
+					p 班级{{vm.user.class}}
+				div.info
+					p.title 小组
+					p 第{{vm.user.group}}小组
+			div.column-2(layout="row" layout-align="space-between center")
+				div.info
+					p.title 学号
+					p {{vm.user.sid}}
+				div.info
+					p.title 邮箱
+					p {{vm.user.email}}
+				div.info
+					p.title 权限
+					p {{vm.user.role | rolefilter}}
+
+	div.group-members.p-12(flex="100" flex-gt-sm="30" layout="column" ng-if="vm.user.role == 'student'")
+		div.md-subhead.p-15.md-accent-bg 小组成员
+		div.p-8.white-bg.md-whiteframe-2dp(layout="row" layout-align="space-between center")
+			div.p-8(flex="25" layout="row" layout-align="center center" ng-repeat="member in vm.members")
+				div.pointer
+					img.md-whiteframe-2dp(src="{{member.avatar}}")
+					md-tooltip(md-direction="bottom") {{member.fullname}}

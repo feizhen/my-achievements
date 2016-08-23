@@ -1,0 +1,56 @@
+mixin md-menu-items
+  //md-menu-items
+  md-menu-item(width="4")
+    md-button(ng-click="vm.jump(homework.description)")
+      span 作业链接
+  md-menu-item(ng-if="vm.status === 'present'")
+    md-button(ng-click="vm.showSubmitDialog(vm.id)")
+      span 提交作业
+  md-menu-item(ng-if="vm.status === 'present'")
+    md-button(ui-sref="app.student.homework-review({ id: vm.id })")
+      span 互评
+  md-menu-item(ng-if="vm.status === 'finish'")
+    md-button(aria-label="Flip widget" ng-click="flipWidget()")
+      span 作业成绩
+
+ms-widget.p-12(layout="column" flippable="true")
+  //ms-widget-front
+  ms-widget-front.white-bg
+    //widget-head
+    div.widget-head.ph-24.pv-12(layout="row" layout-align="space-between")
+      div(layout="column" layout-align="center" ng-bind="vm.hid")
+      md-menu
+        button(aria-label="more" ng-click="$mdOpenMenu($event)")
+          md-icon(md-font-icon="icon-dots-vertical")
+        md-menu-content
+          +md-menu-items("{{vm.status}}")
+        
+    //widget-body
+    div.widget-front-body.p-24(layout="column" layout-align="center center")
+      span.font-weight-500(ng-bind="vm.title" ng-class="vm.style[vm.status].fg")
+      
+    //widget-foot
+    div.widget-foot.ph-24.pv-12
+      span 状态: 
+      span(ng-bind="vm.style[vm.status].text")
+      
+  //ms-widget-back
+  ms-widget-back.white-bg
+  
+    //widget-head
+    div.widget-head.ph-24.pv-12(layout="row" layout-align="space-between")
+      div(layout="column" layout-align="center" ng-bind="vm.hid")
+      div.flip-to-front
+        md-button(class="md-icon-button" ng-click="flipWidget()" aria-label="Flip widget")
+          md-icon(md-font-icon="icon-close")
+    //widget-body      
+    div.widget-back-body.p-12(layout="column" layout-align="space-between stretch" flex="100")
+      div.mv-6(layout="row" layout-align="center center" flex="100" )
+        div(flex="50" layout="row" layout-align="end center") 你的得分:
+        div.ph-24(flex="50" layout="row" layout-align="start center" ng-bind="vm.score")  
+      div.mv-6(layout="row" layout-align="center center" flex="100")
+        div(flex="50" layout="row" layout-align="end center") 你的排名:
+        div.ph-24(flex="50" layout="row" layout-align="start center" ng-bind="vm.rank") 
+    
+    div.widget-back-foot.p-24(layout="row" layout-align="end")
+      a(ui-sref="app.student.homework-detail({id: vm.id})") 作业详情

@@ -1,0 +1,8 @@
+ma-page-header(location="作业详情" name="{{vm.user.fullname}}")
+
+md-content#homework-detail.p-12.wrapper-bg(layout="row")
+  //-main container
+  div(flex="100" flex-gt-sm="50")
+    ma-rank-table(homeworks="vm.homeworks" current="vm.current" class="vm.classId" on-page-change="vm.setCurrentHomeworkId(homeworkId)")
+  div(flex="100" flex-gt-sm="50")
+    ma-distribution-chart(current="vm.current" class="vm.classId")

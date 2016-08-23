@@ -1,0 +1,18 @@
+#hw-cards-container {
+  ms-widget {
+    .widget-head {
+      font-size: 16px;
+    }
+    .widget-front-body {
+      font-size: 34px;
+      padding-bottom: 48px !important;
+    }
+    .widget-back-body {
+      font-size: 20px;
+    }
+    .widget-foot {
+      border-top: 1px solid rgba(0,0,0,.12);
+      background-color: #F9F9F9;
+    }
+  }
+}

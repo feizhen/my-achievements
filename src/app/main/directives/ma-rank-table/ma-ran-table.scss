@@ -1,0 +1,18 @@
+.hoverable {
+  transition: all .2s;
+  &:hover {
+    background-color: #ECECEC;
+  }
+}
+.top-1 {
+  color: orange;
+}
+.top-2 {
+  color: red;
+}
+.top-3 {
+  color: blue;
+}
+.rank-table {
+    transition:all 0.3s;
+}

@@ -1,0 +1,4 @@
+ma-page-header(location="作业列表" name="{{vm.user.fullname}}" type="teacher")
+
+md-content#homework-list.p-12.wrapper-bg(layout="row" layout-wrap)
+    tea-hw-item(homework="homework" ng-repeat="homework in vm.homeworks" flex="100" flex-gt-sm="50" flex-gt-md="33")

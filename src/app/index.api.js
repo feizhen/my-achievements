@@ -172,24 +172,12 @@
 
         var api = {};
 
-        // Base Url
-        api.baseUrl = 'app/data/';
+        var loopbackApiBaseUrl = 'http://localhost:3000/api';
 
-        api.sample = $resource(api.baseUrl + 'sample/sample.json');
-
-        api.auth = {
-         isRegistedUser: function(params){
-            return $resource(api.baseUrl + 'auth/users.json').get().$promise
-               .then(function(result){
-                  var users = result.data.users
-                  for (var i = users.length - 1 ; i >= 0 ; i--){
-                     if(users[i].username === params.username && users[i].password === params.password )
-                        return Promise.resolve({isRegisted: true, user: users[i]});
-                  }
-                  return Promise.resolve({isRegisted: false});
-               });
-         }
-        }
+        //db url
+        api.lb_users = $resource(loopbackApiBaseUrl + '/Customers');
+        api.lb_reviews = $resource(loopbackApiBaseUrl + '/Reviews');
+        api.lb_homeworks = $resource(loopbackApiBaseUrl + '/Homework');
 
         // api.quickPanel = {
         //     activities: $resource(api.baseUrl + 'quick-panel/activities.json'),

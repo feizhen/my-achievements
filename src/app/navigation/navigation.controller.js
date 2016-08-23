@@ -15,7 +15,8 @@
         vm.bodyEl = angular.element('body');
         vm.folded = true;
         vm.msScrollOptions = {
-            suppressScrollX: true
+            suppressScrollX: true,
+            suppressScrollY: true
         };
 
         // Methods
@@ -34,8 +35,8 @@
         // Close the mobile menu on $stateChangeSuccess
         $scope.$on('$stateChangeSuccess', function ()
         {
-            vm.bodyEl.removeClass('ms-navigation-horizontal-mobile-menu-active')
-        })
+            vm.bodyEl.removeClass('ms-navigation-horizontal-mobile-menu-active');
+        });
     }
 
 })();

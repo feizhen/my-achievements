@@ -77,6 +77,7 @@
 
                 // Add proper ui-sref
                 updateItem.uisref = _getUiSref(updateItem);
+                updateItem.event = _getEvent(updateItem);
             }
             // Create
             else
@@ -98,6 +99,8 @@
 
                 // Add proper ui-sref
                 item.uisref = _getUiSref(item);
+
+                item.event = _getEvent(item);
 
                 // Push the item into the array
                 parent.push(item);
@@ -280,6 +283,18 @@
             }
 
             return uisref;
+        }
+
+        function _getEvent(item)
+        {
+            var event = null;
+
+            if ( angular.isFunction(item.event) )
+            {
+                event = item.event;
+            }
+
+            return event;
         }
 
         /* ----------------- */

@@ -1,7 +1,7 @@
 'use strict'
 
 angular
-  .module 'app.student.homework-dashboard', []
+  .module 'app.student.homework-dashboard', ['angularFileUpload']
   .config Student-homework-dashboard-config
 
   Student-homework-dashboard-config.$inject = ['$stateProvider']
@@ -10,11 +10,41 @@ angular
     $state-provider
       .state 'app.student.homework-dashboard', {
         url: '/homework-dashboard'
+        resolve:
+          homeworks: (auth-service, homework-service) ->
+            user = auth-service.get-user!
+            homework-service.get-homeworks-by-class-id user.class
+
+          scores: (auth-service, achievements-service) ->
+            user = auth-service.get-user!
+            achievements-service.get-user-scores user.username
+
+          ranks: (auth-service, achievements-service) ->
+            user = auth-service.get-user!
+            achievements-service.get-user-ranks user.username, user.class
+
         views:
           'content@app':
             template-url: 'app/main/student/homework-dashboard/homework-dashboard.html'
             controller-as: 'vm'
-            controller: ($scope) !->
+            controller: ($scope, auth-service, homeworks, scores, ranks) !->
+
+              get-homework-ids = (homeworks) ->
+                homework-ids = [homework.homework-id for homework in homeworks]
+
+              arr2string = (arr) -> arr.join!
+
               vm = @
-              vm.name = '肥桢'
+              vm.user = auth-service.get-user!
+              vm.homeworks = homeworks
+              vm._scores = scores
+              vm.scores = arr2string vm._scores
+              vm._ranks = ranks
+              vm.ranks = arr2string vm._ranks
+              vm.homework-ids = arr2string get-homework-ids homeworks
+              vm.switch =
+                future:  true
+                present: true
+                finish:  true
+
       }

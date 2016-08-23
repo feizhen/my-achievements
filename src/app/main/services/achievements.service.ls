@@ -19,9 +19,9 @@ angular
     return service
 
     !function get-rank (score, data)
-      data.sort (a, b)-> b.final-score - a.final-score
+      data.sort (a, b)-> b.score - a.score
       for i from 1 to data.length
-        if data[i-1].final-score == score then return i
+        if data[i-1].score == score then return i
 
     !function get-user-scores (username)
       filter =
@@ -36,7 +36,7 @@ angular
       filter =
         "where":
           "reviewee.username": username
-          "homework_id": homework-id
+          "homeworkId": homework-id
           "reviewer.role": "teacher"
 
       return api-resolver.resolve 'lb_reviews@query', {"filter": filter} .then (data) ->
@@ -46,12 +46,12 @@ angular
       filter =
         "where":
           "class": class-id
-          "homework_id": homework-id
+          "homeworkId": homework-id
           "reviewer.role": 'teacher'
 
       return api-resolver.resolve 'lb_reviews@query', {"filter": filter} .then (data) ->
               get-user-score username, homework-id .then (userData) ->
-                get-rank user-data[0].final-score, data
+                get-rank user-data[0].score, data
 
     !function get-user-ranks (username, class-id)
       filter =
@@ -63,7 +63,7 @@ angular
                 get-user-scores username .then (scores) ->
                   ranks = []
                   for i from 0 til scores.length
-                    homework_i_data = _.filter data, (review) -> review.homework_id is i+1
+                    homework_i_data = _.filter data, (review) -> review.homeworkId is i+1
                     rank = get-rank scores[i], homework_i_data
                     ranks.push rank
                   ranks
@@ -72,7 +72,7 @@ angular
       filter =
         "where":
           "class": class-id
-          "homework_id": homework-id
+          "homeworkId": homework-id
           "reviewer.role": 'teacher'
 
       return api-resolver.resolve 'lb_reviews@query', { "filter": filter } .then (data) ->
@@ -87,7 +87,7 @@ angular
       filter =
         "where":
           "class": class-id
-          "homework_id": homework-id
+          "homeworkId": homework-id
           "reviewer.role": 'teacher'
 
       return api-resolver.resolve 'lb_reviews@query', { "filter": filter } .then (data) ->

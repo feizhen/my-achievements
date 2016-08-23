@@ -16,7 +16,7 @@ angular
             filter =
                 "where":
                     "reviewer.username": username
-                    "homework_id": homework-id
+                    "homeworkId": homework-id
 
             return api-resolver.resolve 'lb_reviews@query', { "filter": filter } .then (data)->
                     data

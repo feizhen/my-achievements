@@ -10,6 +10,7 @@ angular
     service =
       get-homeworks: get-homeworks
       get-homeworks-by-class-id: get-homeworks-by-class-id
+      get-homework-by-class-and-homework-id: get-homework-by-class-and-homework-id
 
     return service
 
@@ -29,3 +30,23 @@ angular
                   class: _class[0]
                 }
               Promise.resolve homeworks
+
+    !function get-homework-by-class-and-homework-id (class-id, homework-id)
+        filter =
+            homework_id: homework-id
+        return api-resolver.resolve 'lb_homeworks@query', {"filter": filter} .then (result) ->
+            homeworks = filter-homework-by-class-id result, class-id
+            Promise.resolve homeworks
+
+
+    !function filter-homework-by-class-id (homeworks, class-id)
+        homeworks = []
+        for i from 0 til homeworks.length-1
+            _class = _.remove homeworks[i].classes, (c) -> c.class_id is class-id
+            homeworks.push {
+                homework-id: homeworks[i].homework_id
+                title: homeworks[i].title
+                description: homeworks[i].description
+                class: _class[0]
+            }
+        return homeworks

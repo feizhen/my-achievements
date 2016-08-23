@@ -77,7 +77,6 @@ angular
       set-teacher-items!
 
 
-
     $scope.$on '$viewContentAnimationEnded', (event) -> $root-scope.$broadcast 'msSplashScreen::remove' if event.target-scope.$id is $scope.$id
 
     state-change-listener-stop = $root-scope.$on '$stateChangeStart', (event, to-state, from-state)!->

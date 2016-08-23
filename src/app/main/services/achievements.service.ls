@@ -49,7 +49,7 @@ angular
           "homework_id": homework-id
           "reviewer.role": 'teacher'
 
-      return api-resolver.resolve 'lb_reviews@query', {"fuilter": filter} .then (data) ->
+      return api-resolver.resolve 'lb_reviews@query', {"filter": filter} .then (data) ->
               get-user-score username, homework-id .then (userData) ->
                 get-rank user-data[0].final-score, data
 

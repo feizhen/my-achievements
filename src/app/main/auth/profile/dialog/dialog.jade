@@ -1,0 +1,41 @@
+md-dialog.dialog-container
+	form(name="modifyProfile")
+		div.md-accent-bg.ph-15.dialog-header(layout="column")
+			div.md-subhead.pv-15(layout="row" layout-align="space-between center")
+				div 修改个人信息
+				button.md-icon-button.white-fg(aria-label="close dialog" ng-click="dialog.closeDialog()")
+					md-icon(md-font-icon="icon-close")
+			div.avatar-container(layout="column" layout-align="start center")
+				img.profile-image.avatar.m-0.huge(src="{{dialog.info.avatar}}")
+				div.md-subhead.m-15 {{dialog.user.fullname}}
+		md-dialog-content.p-15.pt-30(layout="column" ms-scroll)
+			md-input-container.mt-0
+				label(for="username") 姓名
+				md-icon(md-font-icon="icon-account")
+				input(ng-model="dialog.info.fullname" disabled)
+			md-input-container.mt-0(ng-if="dialog.user.role != 'teacher'")
+				label(for="sid") 学号
+				md-icon(md-font-icon="icon-clipboard-text")
+				input(ng-model="dialog.info.sid" require)
+			md-input-container.m-0
+				label(for="email") 邮箱
+				md-icon(md-font-icon="icon-email")
+				input(ng-model="dialog.info.email")
+			div(layout="row" layout-align="center center" ng-if="dialog.flag")
+				md-button.md-accent(ng-click="dialog.changePassword()") 修改密码
+			md-input-container.mt-0(ng-if="!dialog.flag")
+				label(for="oldPassword") 旧密码
+				md-icon(md-font-icon="icon-key")
+				input(ng-model="dialog.oldPassword")
+			md-input-container.mt-0(ng-if="!dialog.flag")
+				label(for="newPassword") 新密码
+				md-icon
+				input(ng-model="dialog.newPassword")
+			md-input-container.m-0(ng-if="!dialog.flag")
+				label(for="comfirPassword") 确认密码
+				md-icon
+				input(ng-model="dialog.comfirPassword")
+			div.m-15(layout="row" layout-align="center center" ng-if="!dialog.flag")
+				md-button.md-accent(ng-click="dialog.changePassword()") 取消修改					
+		md-dialog-actions.p-15.border-top.wrapper-bg(layout="row" layout-align="start center")
+			md-button.md-raised 保存

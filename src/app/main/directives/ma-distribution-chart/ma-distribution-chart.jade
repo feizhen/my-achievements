@@ -8,19 +8,19 @@ div.p-12(flex="100")
     div.p-24
       nvd3.h-360(config="vm.chartConfig.config" options="vm.chartConfig.options" data="vm.chartConfig.data")
       
-    //-distribution chart foot
-    div.p-12(layout="column")
-      div.border-top.p-12(layout="row")
-        div.border-right( flex="50" layout="column" layout-align="start center")
-          span.font-size-28(ng-bind="distribution.ninety-to-full")
-          span 90~100分数段人数
-        div( flex="50" layout="column" layout-align="start center")
-          span.font-size-28 {{vm.eighty-to-ninety}}
-          span 80~90分数段人数
-      div.border-top.p-12(layout="row")
-        div.border-right( flex="50" layout="column" layout-align="start center")
-          span.font-size-28 {{vm.seventy-to-eighty}}
-          span 70~80分数段人数
-        div( flex="50" layout="column" layout-align="start center")
-          span.font-size-28 {{vm.sixty-to-seventy}}
-          span 60~70分数段人数
+    //-//-distribution chart foot
+    //-div.p-12(layout="column")
+      //-div.border-top.p-12(layout="row")
+        //-div.border-right( flex="50" layout="column" layout-align="start center")
+          //-span.font-size-28(ng-bind="distribution.ninety-to-full")
+          //-span 90~100分数段人数
+        //-div( flex="50" layout="column" layout-align="start center")
+          //-span.font-size-28 {{vm.eighty-to-ninety}}
+          //-span 80~90分数段人数
+      //-div.border-top.p-12(layout="row")
+        //-div.border-right( flex="50" layout="column" layout-align="start center")
+          //-span.font-size-28 {{vm.seventy-to-eighty}}
+          //-span 70~80分数段人数
+        //-div( flex="50" layout="column" layout-align="start center")
+          //-span.font-size-28 {{vm.sixty-to-seventy}}
+          //-span 60~70分数段人数

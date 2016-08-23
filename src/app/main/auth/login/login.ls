@@ -22,10 +22,14 @@ angular
             controller: ( auth-service, $state, $scope ) ->
 
               auth = auth-service
+              vm = @
 
               login: ->
                 auth.login @form .then (user) ->
                   if user
+                    vm.invalid-user = false
                     dest = auth.get-dest!
                     $state.go dest
+                  else
+                    vm.invalid-user = true
       }

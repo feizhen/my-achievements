@@ -1,7 +1,7 @@
 'use strict'
 
 angular
-  .module 'app.student', ['app.student.homework-dashboard', 'app.student.homework-detail']
+  .module 'app.student', ['app.student.homework-dashboard', 'app.student.homework-detail', 'app.student.homework-review']
   .config student-config
 
   student-config.$inject = ['$stateProvider']

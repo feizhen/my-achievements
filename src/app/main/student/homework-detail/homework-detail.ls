@@ -22,11 +22,11 @@ angular
 
             controller: ($scope, $state-params, auth-service, homeworks) !->
 
-              vm = @
-              vm.user = auth-service.get-user!
+              vm           = @
+              vm.user      = auth-service.get-user!
               vm.homeworks = homeworks
-              vm.current = $state-params.id || 1
-              vm.class-id = vm.user.class
+              vm.current   = $state-params.id || 1
+              vm.class-id  = vm.user.class
 
               vm.set-current-homework-id = (homework-id) !->
                 vm.current = homework-id

@@ -20,6 +20,7 @@ angular
       get-user:             get-user
       get-dest:             get-dest
       get-user-from-cookie: get-user-from-cookie
+      get-group-members:    get-group-members
 
     return service
 
@@ -76,3 +77,11 @@ angular
 
     !function is-authorizaed (to-state)
       return !to-state.data || !to-state.data.role || to-state.data.role == current-user.role
+
+    !function get-group-members (class-id, group)
+      filter =
+        "where":
+          "class": class-id
+          "group": group
+      return api-resolver.resolve 'lb_users@query', {"filter": filter} .then (users) ->
+                users
